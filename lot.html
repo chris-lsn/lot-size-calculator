@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <title>Lot size calculator of Never losing formula</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+
+    <body>
+        <div id="app">
+            <h2>Lot size calculator of Never losing formula</h2>
+            <label for="type"></label>
+            <select name="type" id="type" v-model="type" @change="calculate">
+                <option value="buy">Buy</option>
+                <option value="sell">Sell</option>
+            </select>
+            <br><br>
+            <label for="entry_price">Entry Price</label>
+            <input type="number" id="entry_price" name="entry_price" v-model.number="entry_price">
+            <br>
+            <label for="take_profit">Take Profit</label>
+            <input type="number" id="take_profit" name="take_profit" v-model.number="take_profit" @change="calculate">
+            <br>
+            <label for="swap" >Swap</label>
+            <input type="number" id="swap" name="swap" v-model.number="swap" @change="calculate">
+            <br>
+            <br>
+            <span>{{ type == 'buy' ? 'Buy' : 'Sell' }} order >> T/P: {{ type == 'buy' ? '$' + (entry_price + take_profit) : '$' + (entry_price - take_profit)}}, </span>
+            <span>S/L:{{ type == 'buy' ? ' $' + (entry_price - take_profit - middle_distance) : ' $' + (entry_price + take_profit + middle_distance)}}</span>
+            <br>
+            <span>{{ type == 'buy' ? 'Sell' : 'Buy' }} order >> T/P: {{ type == 'buy' ? '$' + (entry_price - take_profit - middle_distance) : '$' + (entry_price + take_profit + middle_distance)}},
+            </span>
+            <span>S/L:{{ type == 'buy' ? ' $' + (entry_price + take_profit) : ' $' + (entry_price - take_profit)}}</span>
+            <br><br>
+            <span>
+                {{ type == 'buy' ? 'Buying' : 'Selling' }} Lots: {{lots.filter((lot, i) => i % 2 == 0)}}
+            </span>
+            <br>
+            <span>
+                {{ type == 'buy' ? 'Selling' : 'Buying' }} Lots: {{lots.filter((lot, i) => i % 2 != 0)}}
+            </span>
+        </div>
+        <script src="./lot.js"></script>
+    </body>
+</html>
