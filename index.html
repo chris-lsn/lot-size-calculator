@@ -13,14 +13,17 @@
                 <option value="sell">Sell</option>
             </select>
             <br><br>
+            <label for="lot_size">Lot size</label>
+            <input type="number" id="lot_size" name="lot_size" v-model.number="lot_size" @input="calculate">
+            <br>
             <label for="entry_price">Entry Price</label>
-            <input type="number" id="entry_price" name="entry_price" v-model.number="entry_price">
+            <input type="number" id="entry_price" name="entry_price" v-model.number="entry_price" @input="calculate">
             <br>
             <label for="take_profit">Take Profit</label>
-            <input type="number" id="take_profit" name="take_profit" v-model.number="take_profit" @change="calculate">
+            <input type="number" id="take_profit" name="take_profit" v-model.number="take_profit" @input="calculate">
             <br>
             <label for="swap" >Swap</label>
-            <input type="number" id="swap" name="swap" v-model.number="swap" @change="calculate">
+            <input type="number" id="swap" name="swap" v-model.number="swap" @input="calculate">
             <br>
             <br>
             <span>{{ type == 'buy' ? 'Buy' : 'Sell' }} order >> T/P: {{ type == 'buy' ? '$' + (entry_price + take_profit) : '$' + (entry_price - take_profit)}}, </span>

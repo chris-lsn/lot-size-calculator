@@ -3,9 +3,10 @@ const app = new Vue({
     data: {
         take_profit: 210,
         type: 'buy',
-        lots: [1, 1.4, 1, 1.4],
+        lots: [],
         swap: 10,
-        entry_price: 0
+        entry_price: 0,
+        lot_size: 0.1
     },
     computed: {
         middle_distance() {
@@ -18,7 +19,7 @@ const app = new Vue({
             return Math.ceil(num * size) / size;
         },
         calculate() {
-            this.lots = [1, 1.4, 1, 1.4];
+            this.lots = [1 * this.lot_size, 1.4 * this.lot_size, 1 * this.lot_size, 1.4 * this.lot_size];
             for (let count = 0; count < 20; count++) {
                 // Assume it is a Buy order
                 // Calculate lose
